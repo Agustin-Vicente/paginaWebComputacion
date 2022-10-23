@@ -1,0 +1,145 @@
+.navegador{
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 30px; 
+    height: 100px;
+    width: 50%;
+    flex-flow: row wrap;
+}
+
+.navegador li{
+    display: inline;
+}
+
+
+.encabezado{
+    background-color: lightblue;
+    height: 100px;
+    position: relative;
+}
+
+#divFotoBayer{
+    height: 100px;
+    width: 250px;
+    box-sizing: content-box; /*No entiendo que hace, no cambia en nada*/
+    position: absolute;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#fotoBayer{
+    width: 300px;
+    padding: 5px;
+    align-items: center;
+    margin-left: 30px;
+}
+
+#primerProducto, #segundoProducto, #tercerProducto, #cuartoProducto, #quintoProducto{
+    width: 1000px;
+    /*height: 100px;*/
+    margin-left: 75px;
+    margin-top: 20px;
+    position: relative;
+    /*background-color: red;*/
+    box-sizing: content-box;
+    
+}
+
+#nombreBotones, #formaPago, #totalPagar{
+    margin-left: 75px;
+}
+
+
+#print{
+    right: 50px;
+    position: absolute;
+}
+
+#pdf{
+    position: absolute;
+    right: 100px;
+    margin-right: 50px;
+}
+
+
+#cliente{
+    margin-left: 20px;
+}
+
+.cant{
+    text-align: center;
+}
+
+.labelCant{
+    margin-left: 15px;
+}
+
+table{
+    margin-top: 15px;
+    display: inline-block;
+    border-collapse: collapse;
+}
+
+tr, td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.formaDePago{ /*No sé por qué no me deja sacar los bordes*/
+    border: none !important; 
+}
+
+#formaPago{
+    display: block;
+}
+
+.tablaFinal{
+   border: none; 
+}
+#Pagar{
+    border: 1px solid black;  
+}
+
+#segundoProducto{
+    display: none;
+    
+}
+
+#tercerProducto{
+    display: none;
+}
+
+#cuartoProducto{
+    display: none;
+}
+
+#quintoProducto{
+    display: none;
+}
+
+#eliminarProducto{
+    display: none;
+}
+
+.botonesAgregar{
+    /*background-color: green;*/
+    margin-left: 75px;
+}
+
+#nombreBotones{
+   /* background-color: yellow;*/
+}
+
+.botonesAgregar{
+    margin-top: 5px;
+}
+
+.tablaProductos{
+    margin-bottom: 5px;
+}

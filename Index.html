@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title> Vicent´s Budget Online Calculator </title>
+        <link rel="icon" href="Imagenes/bayer.ico">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <link rel="stylesheet" type="text/css" href="normalize.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+        
+        <script src="html2canvas.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+        <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+        
+    </head>
+    
+    <div id="estoSeImprime"></div>
+
+    <body>
+        <div class="encabezado">
+            <header id="header" class="header">
+
+                <div id="divFotoBayer"> 
+                    <img id="fotoBayer" src="Imagenes/Bayer.jpg">
+                </div>
+
+                <nav>
+                    <ul class="navegador">
+                        <li><a href="" class="contactUs"> Contact Us </a></li>
+                        <li><a href="" id="aboutUs"> About Us </a></li>
+                        <li><a href="" id="feedBack"> Feedback </a></li>
+                    <ul>
+                </nav>
+
+            </header>
+        </div>
+        <br>
+        <br>
+        
+        <div id="estoEsPDF">
+        <div id="nombreBotones"> 
+             <form id="nombreCliente">
+                <label for="cliente" id="cliente"> Cliente </label>
+                <input type="text" id="clienteNombre" placeholder="Ingrese su nombre" >
+            
+                <input type="button" value="Exportar PDF" id="pdf" onclick="generarPDF()">
+                <input type="button" value="Imprimir" id="print" onclick="printer()">
+            </form>
+        </div>
+        
+        
+        <div id="todosLosProductos">
+        <div id="primerProducto"> 
+            <form id="pyc1"> <!--pyc = Producto y Cantidad-->
+                <select id="selectorPrimerProducto" >
+                    <option disabled selected=""> Elija un equipo productivo </option>
+                    <option value="0" name="Opción 1"> Opción 1 </option>
+                    <option value="1" name="Opción 2"> Opción 2 </option>
+                    <option value="2" name="Opción 3"> Opción 3 </option>
+                    <option value="3" name="Opción 4"> Opción 4 </option>
+                    <option value="4" name="Opción 5"> Opción 5 </option>
+                    <option value="5" name="Opción 6"> Opción 6 </option>
+                    <option value="6" name="Opción 7"> Opción 7 </option>
+                </select>
+
+                <label for="cant1" class="labelCant"> Cantidad </label>
+                <input type="number" id="cant1" min="1" max="300" class="cant" required="">
+                <input type="button" id="ok1" value="+" onclick="primerProducto()" class="agregar" name="hola">
+            </form>
+            
+            <table class="tablaProductos" id="tabla1">
+                <tr class="contTabla">
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+                <tr class="contTabla">
+                    <td><label id="nombreProducto1"></label></td>
+                    <td><label id="cantProducto1"></label></td>
+                    <td><label id="precioProducto1"></label></td>
+                </tr>
+            </table>
+
+        </div>
+
+       
+        <div id="segundoProducto"> 
+            <form id="pyc2"><!--No se me ocurrió otra manera para que cuando se elimine el producto el selector aparezca con el "place holder". No me convence agregar un value=7 para el default-->
+                <select id="selectorSegundoProducto">
+                    <option disabled selected="" value="7"> Elija un equipo productivo </option> 
+                    <option value="0"> Opción 1 </option>
+                    <option value="1"> Opción 2 </option>
+                    <option value="2"> Opción 3 </option>
+                    <option value="3"> Opción 4 </option>
+                    <option value="4"> Opción 5 </option>
+                    <option value="5"> Opción 6 </option>
+                    <option value="6"> Opción 7 </option>
+                </select>
+            
+                <label for="cant2" class="labelCant"> Cantidad </label>
+                <input type="number" id="cant2" min="1" max="300" class="cant">
+                <input type="button" id="ok2" value="+" onclick="segundoProducto()" class="agregar">
+            </form>
+            
+            <table class="tablaProductos" id="tabla2">
+                <tr class="tr1">
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+                <tr class="tr2">
+                    <td class="td1"><label id="nombreProducto2"></label></td>
+                    <td class="td2"><label id="cantProducto2"></label></td>
+                    <td class="td3"><label id="precioProducto2"></label></td>
+                </tr>
+
+            </table>
+        </div>
+        
+        
+        <div id="tercerProducto"> 
+            <form id="pyc3">
+                <select id="selectorTercerProducto">
+                    <option disabled selected="" value="7"> Elija un equipo productivo </option>
+                    <option value="0"> Opción 1 </option>
+                    <option value="1"> Opción 2 </option>
+                    <option value="2"> Opción 3 </option>
+                    <option value="3"> Opción 4 </option>
+                    <option value="4"> Opción 5 </option>
+                    <option value="5"> Opción 6 </option>
+                    <option value="6"> Opción 7 </option>
+                </select>
+           
+                <label for="cant3" class="labelCant"> Cantidad </label>
+                <input type="number" id="cant3" min="1" max="300" class="cant">
+                <input type="button" id="ok3" value="+" onclick="tercerProducto()" class="agregar">
+            </form>
+            
+            <table class="tablaProductos" id="tabla3">
+                <tr>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+                <tr>
+                    <td><label id="nombreProducto3"></label></td>
+                    <td><label id="cantProducto3"></label></td>
+                    <td><label id="precioProducto3"></label></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+   
+        <div id="cuartoProducto"> 
+            <form id="pyc4">
+                <select id="selectorCuartoProducto">
+                    <option disabled selected="" value="7"> Elija un equipo productivo </option>
+                    <option value="0"> Opción 1 </option>
+                    <option value="1"> Opción 2 </option>
+                    <option value="2"> Opción 3 </option>
+                    <option value="3"> Opción 4 </option>
+                    <option value="4"> Opción 5 </option>
+                    <option value="5"> Opción 6 </option>
+                    <option value="6"> Opción 7 </option>
+                </select>
+            
+                <label for="cant4" class="labelCant"> Cantidad </label>
+                <input type="number" id="cant4" min="1" max="300" class="cant">
+                <input type="button" id="ok4" value="+" onclick="cuartoProducto()" class="agregar">
+            </form>
+            
+            <table class="tablaProductos" id="tabla4">
+                <tr>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+                <tr>
+                    <td><label id="nombreProducto4"></label></td>
+                    <td><label id="cantProducto4"></label></td>
+                    <td><label id="precioProducto4"></label></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        
+        <div id="quintoProducto"> 
+            <form id="pyc5">
+                <select id="selectorQuintoProducto">
+                    <option disabled selected="" value="7"> Elija un equipo productivo </option>
+                    <option value="0"> Opción 1 </option>
+                    <option value="1"> Opción 2 </option>
+                    <option value="2"> Opción 3 </option>
+                    <option value="3"> Opción 4 </option>
+                    <option value="4"> Opción 5 </option>
+                    <option value="5"> Opción 6 </option>
+                    <option value="6"> Opción 7 </option>
+                </select>
+           
+                <label for="cant5" class="labelCant"> Cantidad </label>
+                <input type="number" id="cant5" min="1" max="300" class="cant">
+                <input type="button" id="ok5" value="+" onclick="quintoProducto()" class="agregar">
+            </form>
+            
+            <table class="tablaProductos" id="tabla5">
+                <tr>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Precio</td>
+                </tr>
+                <tr>
+                    <td><label id="nombreProducto5"></label></td>
+                    <td><label id="cantProducto5"></label></td>
+                    <td><label id="precioProducto5"></label></td>
+                </tr>
+
+            </table>
+
+        </div>
+        </div>
+        <br>
+
+        <div class="botonesAgregar">
+          
+                <input type="submit" value="Añadir otro equipo" id="añadirProducto" onclick="agregar()">
+                <input type="submit" value="Eliminar equipo" id="eliminarProducto" onclick="eliminar()">
+               
+            
+        </div>
+    
+        <br>
+
+        <div>
+            <table id="formaPago">
+                <tr class="formaDePago" id="formaPagoTabla">
+                    <td class="formaDePago" id="formaPagoTabla1">Forma de pago</td>
+                    <td class="formaDePago" id="formaPagoTabla2"> 
+                        <select id="Pagar">
+                            <option disabled selected=""> Elija una forma de pago </option>
+                            <option value="0"> Contado </option>
+                            <option value="1"> Ahora 12 </option>
+                            <option value="2"> Ahora 18</option>
+                        </select>
+                    </td>
+                    <td style="border: none;"><input type="button" id="fin" value="Calcular" onclick="pagoFinal()"></td>
+                </tr>
+            </table>
+           
+        </div>
+
+        <br>
+
+        <div>
+            
+            <table id="totalPagar">
+                <tr class="tablaFinal">
+                    <td class="tablaFinal"><h4>Total a pagar:</h4></td>
+                    <td class="tablaFinal"> 
+                        <table>
+                            <tr>
+                                <td>Precio</td>
+                                <td>IVA</td>
+                                <td>Total</td>
+                            </tr>
+
+                            <tr>
+                                <td><label id="precioFinal"></label></td>
+                                <td><label id="iva"></label></td>
+                                <td><label id="total"></label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        <script src="Script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        
+
+    </body>
+
+</html>
